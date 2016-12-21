@@ -21,6 +21,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment'
 end
 
+gem 'favro_api', github: 'kressh/favro_api'
+
 gem 'redcarpet'
 gem 'pry-rails'
 
