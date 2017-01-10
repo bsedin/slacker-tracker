@@ -1,0 +1,16 @@
+h1 Dashboard
+
+= render partial: 'filters'
+
+/ = render 'refills/comment'
+
+- users.each do |user|
+  - time = user.public_send(:"#{interval}_#{zoom}_time")
+  h2= user.name
+  - if time > 0
+    p
+      |
+        #{(time / 3600).round(1)}
+        hours
+  - else
+    p= 0

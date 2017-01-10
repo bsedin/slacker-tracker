@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
@@ -14,14 +14,16 @@ gem 'rabl-rails'
 gem 'autoprefixer-rails'
 gem 'neat'
 gem 'bourbon'
+gem 'bitters'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-normalize-css'
   gem 'rails-assets-perfect-scrollbar'
   gem 'rails-assets-moment'
+  gem 'rails-assets-chartjs'
 end
 
-gem 'favro_api', github: 'kressh/favro_api'
+gem 'favro_api', github: 'kressh/favro_api', branch: 'master'
 
 gem 'redcarpet'
 gem 'pry-rails'
@@ -39,6 +41,7 @@ group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'mina', '0.3.8'
+  gem 'refills'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

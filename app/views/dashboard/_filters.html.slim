@@ -1,0 +1,24 @@
+form action='/' method='GET'
+  .search-tools
+    .filters
+      .filter
+        label Interval
+        div
+          ol.filter-list
+            - %w(this last).each do |int|
+              li
+                label
+                  input type="radio" name="interval" value=int checked=('checked' if int == interval)
+                  = int.capitalize
+      .filter
+        label Zoom level
+        div
+          ol.filter-list
+            - %w(day week month year).each do |zm|
+              li
+                label
+                  input type="radio" name="zoom" value=zm checked=('checked' if zm == zoom)
+                  = zm.capitalize
+
+      .filter.trigger
+        input type='submit' value='Update'

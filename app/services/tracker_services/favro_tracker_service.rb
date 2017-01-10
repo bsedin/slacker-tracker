@@ -1,5 +1,6 @@
 class FavroTrackerService < TrackerService
 
-  def get_cards(filters = {})
-  end
+  # def tasks(filters = {})
+  #
+  # end
 end
