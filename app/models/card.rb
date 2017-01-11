@@ -21,4 +21,8 @@ class Card < ApplicationRecord
   def members
     User.where(id: member_ids)
   end
+
+  def tags
+    super || []
+  end
 end

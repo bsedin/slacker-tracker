@@ -5,11 +5,10 @@ form action='/' method='GET'
         label Interval
         div
           ol.filter-list
-            - %w(this last).each do |int|
+            - %w(start_date end_date).each do |date|
               li
-                label
-                  input type="radio" name="interval" value=int checked=('checked' if int == interval)
-                  = int.capitalize
+                label= date.capitalize
+                input type="date" name=date value=send(date)
       .filter
         label Zoom level
         div

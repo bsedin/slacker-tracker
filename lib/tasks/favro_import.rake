@@ -17,6 +17,8 @@ namespace :favro do
         timesheets_field_id = timesheets_field['customFieldId']
       end
 
+      widgets = fetch_widgets
+
       fetch_cards.each do |favro_card|
         card = Card.where("service_ids ->> 'favro' = ?", favro_card.cardCommonId).first_or_create do |c|
           c.title       = favro_card.name
@@ -28,11 +30,14 @@ namespace :favro do
           due_date:   favro_card.dueDate
         }
 
+        widget = widgets.detect{ |w| w.widgetCommonId == favro_card.widgetCommonId }
+
         card.update(
           data: data,
           description: favro_card.detailedDescription,
           archived: favro_card.archived,
-          member_ids: User.by_favro_ids(favro_card.assignments.map(&:userId)).pluck(:id)
+          member_ids: User.by_favro_ids(favro_card.assignments.map(&:userId)).pluck(:id),
+          tags: [widget&.name]
         )
 
         if sheets = favro_card.customFields.detect{|x| x.customFieldId == timesheets_field_id }
@@ -103,6 +108,15 @@ namespace :favro do
     def fetch_custom_fields
       auth
       response = FavroApi.custom_fields(
+        organization_id: ENV['FAVRO_ORGANIZATION_ID'],
+        collectionId: ENV['FAVRO_COLLECTION_ID']
+      )
+      response.entities
+    end
+
+    def fetch_widgets
+      auth
+      response = FavroApi.widgets(
         organization_id: ENV['FAVRO_ORGANIZATION_ID'],
         collectionId: ENV['FAVRO_COLLECTION_ID']
       )

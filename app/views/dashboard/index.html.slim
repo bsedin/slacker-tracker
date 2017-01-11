@@ -1,11 +1,28 @@
-h1 Dashboard
+coffee:
+  init = ->
+    $('.js--chart').each (_, el) ->
+      $el = $(el)
+      new Chart $el,
+        type: 'bar'
+        data: $el.data('chart')
+
+  $ ->
+    init()
 
 = render partial: 'filters'
 
 / = render 'refills/comment'
 
+h1 By user
+
+canvas.js--chart data-chart=chartize(interval: interval, grouped_timesheets: timesheets_by_user)
+
+h1 By customer
+
+canvas.js--chart data-chart=chartize(interval: interval, grouped_timesheets: timesheets_by_customer)
+
 - users.each do |user|
-  - time = user.public_send(:"#{interval}_#{zoom}_time")
+  - time = user.timesheets.within(start_date..end_date).sum(:time)
   h2= user.name
   - if time > 0
     p

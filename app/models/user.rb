@@ -19,4 +19,8 @@ class User < ApplicationRecord
       }
     end
   end
+
+  def tags
+    super || []
+  end
 end

@@ -18,4 +18,8 @@ class Timesheet < ApplicationRecord
       }
     end
   end
+
+  def hours
+    (time / 3600).round(1)
+  end
 end
