@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/kressh/favro_api.git
-  revision: 79d7771ba34ef6140902621843a86978914fd537
+  revision: 49f0b7a26e2876411d9cce6e3bded390de25fbd7
   branch: master
   specs:
-    favro_api (0.1.0)
+    favro_api (0.9)
       faraday (~> 0.10)
 
 GEM
