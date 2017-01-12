@@ -2,7 +2,9 @@ class Timesheet < ApplicationRecord
   belongs_to :card
   belongs_to :user
 
-  scope :within, -> (interval) { where(created_at: interval) }
+  scope :within, -> (interval) {
+    where(created_at: interval.first.to_time.beginning_of_day..interval.last.to_time.end_of_day)
+  }
 
   %w(this last).each do |which|
     %w(day week month year).each do |interval|
@@ -20,6 +22,6 @@ class Timesheet < ApplicationRecord
   end
 
   def hours
-    (time / 3600).round(1)
+    (time / 3600.0).round(1)
   end
 end

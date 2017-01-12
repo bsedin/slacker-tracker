@@ -1,0 +1,6 @@
+.container
+  h1 Customers
+
+  canvas.js--chart data-chart=chartize(interval: interval, grouped_timesheets: timesheets_by_customer, zoom: zoom)
+
+  = render partial: 'charts/timesheets/summary', locals: { grouped_timesheets: timesheets_by_customer }

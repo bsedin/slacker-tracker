@@ -1,0 +1,14 @@
+ruby:
+  sorted_timesheets = grouped_timesheets.sort_by do |_, timesheets|
+    -timesheets.sum(&:time)
+  end.to_h
+
+  labels = sorted_timesheets.keys
+
+center
+  .stats
+    ul
+      - labels.each do |label|
+        li
+          = sorted_timesheets[label].sum(&:hours).round
+          span= label

@@ -17,14 +17,8 @@ coffee:
 
 = render partial: 'shared/filters'
 
-.dropdown
-  .dropdown-container
-    p.dropdown-description By developer
-    p.dropdown-button Click to Select
-    ul.dropdown-menu.dropdown-select
-      - users.each do |user|
-        li
-          = link_to user.name, user_path(user, filter_params)
+h1= user.name
 
 = render partial: 'charts/timesheets/by_user'
 = render partial: 'charts/timesheets/by_customer'
+= render partial: 'charts/timesheets/by_card'
