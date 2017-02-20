@@ -9,7 +9,7 @@ module GroupedTimesheets
 
   def timesheets_by_customer
     timesheets.group_by do |ts|
-      ts.card.tags.first || 'none'
+      (ts.card.tags.first || 'none').gsub(/\ ?\(.+/, "")
     end
   end
 
